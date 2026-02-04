@@ -30,7 +30,15 @@ struct abarrotes {
 };
 
 struct estantes{
-    int numero de
+    int numero_de_estante;
+    string fecha_de_actualizacion;
+    string persona_que_actualizo;
+    vector<verdura> verduras;
+    vector <abarrotes> prod_abarrotes;
+
+
+    // constructor
+    estantes(){}
     //hola
 
 };
