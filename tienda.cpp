@@ -21,7 +21,7 @@ struct verdura {
 
     string nombre;
     float precio;
-    float tiempo_de_vida; // por que float? como se piensa ingresar el tiempo de vida
+    float tiempo_de_vida;
     string fecha_de_compra;
 
 };
