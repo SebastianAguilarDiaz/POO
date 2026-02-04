@@ -31,6 +31,7 @@ struct abarrotes {
 
 struct estantes{
     int numero de
+    //hola
 
 };
 
