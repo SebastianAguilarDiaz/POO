@@ -9,22 +9,23 @@
 
 using namespace std;
 
-// PASOS
-// hacer un pull
+// ***** PASOS *****
+// git pull
 // hacer cambios en el codigo
 // guardarlos
+// git add .
+// git commit -m "detalles de las modificaciones"
 // git push
-
 
 struct verdura {
 
     string nombre;
     float precio;
-    float tiempo_de_vida;
+    float tiempo_de_vida; // por que float? como se piensa ingresar el tiempo de vida
     string fecha_de_compra;
 
 };
-struct abarrotes {
+struct abarrote {
 
     string nombre;
     float precio;
@@ -38,14 +39,12 @@ struct estantes{
     string fecha_de_actualizacion;
     string persona_que_actualizo;
     vector<verdura> verduras;
-    vector<abarrotes> prod_abarrotes;
-
+    vector<abarrote> abarrotes;
 
     // constructor
     estantes(){}
 
 };
-
 
 
 
