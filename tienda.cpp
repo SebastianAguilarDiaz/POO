@@ -9,17 +9,33 @@
 
 using namespace std;
 
-// Title:     			  Store
-// Author(s):  			  Sebastian Aguilar
-// Creation Date:		  04/02/2026
-// Last update:			  04/02/2026
-// Version:				  1.0.0
 
-struct vegetable{
+
+
+struct verdura {
+
+    string nombre;
+    float precio;
+    float tiempo_de_vida;
+    string fecha_de_compra;
+
+
+};
+struct abarrotes {
+
+    string nombre;
+    float precio;
+    string fecha_de_caducidad;
 
 };
 
-struct 
+struct estantes{
+    int numero de
+
+};
+
+
+
 
 
 
