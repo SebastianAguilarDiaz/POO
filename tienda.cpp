@@ -17,6 +17,8 @@ using namespace std;
 // git commit -m "detalles de las modificaciones"
 // git push
 
+void line(int x=30){while(x--) {cout<<'-';} cout<<endl;}
+
 struct verdura {
 
     string nombre;
@@ -25,19 +27,20 @@ struct verdura {
     string fecha_de_compra;
 
     void imprimirDatos(){
-        cout<<nombre<<"\t"<<precio<<tiempo_de_vida<<"\t"<<fecha_de_compra<<endl;
+        cout<<nombre<<"\t|"<<precio<<"\t|"<<tiempo_de_vida<<"\t|"<<fecha_de_compra<<endl;
+        line();
     }
 
 
     void pedirDatos(){
 
-        cout<<"Ingrese el nombre\t";
+        cout<<"Ingrese el nombre ";
         cin>>this->nombre;
-        cout<<"Ingrese el precio\t";
+        cout<<"Ingrese el precio ";
         cin>>this->precio;
-        cout<<"Ingrese el tiempo de vida (en dias)\t";
+        cout<<"Ingrese el tiempo de vida (en dias) ";
         cin>>this->tiempo_de_vida;
-        cout<<"Ingrese la fecha de compra\t";
+        cout<<"Ingrese la fecha de compra ";
         cin>>this->fecha_de_compra;
     }
 };
@@ -48,23 +51,24 @@ struct abarrote {
     string fecha_de_caducidad;
 
     void imprimirDatos(){
-        cout<<nombre<<"\t"<<precio<<"\t"<<fecha_de_caducidad<<endl;
+        cout<<nombre<<"\t|"<<precio<<"\t|"<<fecha_de_caducidad<<endl;
+        line();
 
 
     }
     void pedirDatos(){
 
-        cout<<"Ingrese el nombre\t";
+        cout<<"Ingrese el nombre ";
         cin>>this->nombre;
-        cout<<"Ingrese el precio\t";
+        cout<<"Ingrese el precio ";
         cin>>this->precio;
-        cout<<"Ingrese la fecha de caducidad\t";
+        cout<<"Ingrese la fecha de caducidad ";
         cin>>this->fecha_de_caducidad;
 
     }
 };
 
-struct estantes{
+struct estante{
 
     int numero_de_estante;
     string fecha_de_actualizacion;
@@ -73,7 +77,7 @@ struct estantes{
     vector<abarrote> abarrotes;
 
     // constructor
-    estantes(int estante){
+    estante(int estante){
 
         // guardar el numero de estante
         this->numero_de_estante=estante;
@@ -84,13 +88,16 @@ struct estantes{
 
     // imprimir lo que contiene el estante
     void imprimirDatos(){
-        cout<<"Estante "<<this->numero_de_estante<<endl;
+        cout<<"\nEstante "<<this->numero_de_estante<<endl;
+        cout<<"Fecha de la ultima actualizacion "<<this->fecha_de_actualizacion<<"\nPersona que actualizo "<<this->persona_que_actualizo<<endl<<endl;
         cout<<"Verduras\n";
-        cout<<"Nombre\tPrecio\tTiempo\tFecha\n";
-        for(verdura n:verduras) n.imprimirDatos();
+        cout<<"Nombre\t|Precio\t|Tiempo\t|Fecha\n";
+        line();
+        for(verdura &n:this->verduras) n.imprimirDatos();
         cout<<"\nAbarrotes\n";
-        cout<<"Nombre\tPrecio\tCaducidad\n";
-        for(abarrote n:abarrotes) n.imprimirDatos();
+        cout<<"Nombre\t|Precio\t|Caducidad\n";
+        line();
+        for(abarrote &n:this->abarrotes) n.imprimirDatos();
         
     }
 
@@ -123,9 +130,9 @@ struct estantes{
 
 
         // ingresa los productos
-        while(cantidad_de_productos--){
+        while(cantidad_de_productos){
             char tipo;
-            cout<<"Productos restantes "<<cantidad_de_productos<<endl;
+            cout<<"Productos restantes "<<cantidad_de_productos--<<endl;
             cout<<"Verdura(v) o abarrotes(a)\t";
             cin>>tipo;
 
@@ -144,13 +151,49 @@ struct estantes{
     }
 };
 
+struct tienda{
+    vector<estante> estantes;
+    tienda(int cantidad_de_estantes){
+        int i=1;
+        while(cantidad_de_estantes--){
+            cout<<endl;
+            estante n(i++);
+            cout<<endl;
+            estantes.push_back(n);
+        }
+    }
+    void actualizarEstante(){
+        cout<<"Ingrese que estante desea actualizar\n";
+        int n;
+        cin>>n;
+        this->estantes.at(n-1).actualizarEstante();
+    }
+    void imprimirInventario(){
+        for(estante &n:estantes){
+            n.imprimirDatos();
+            cout<<endl;
+        }
+    }
+};
 
-
-const int cantidad_de_estantes=2;
+const int CANTIDAD_DE_ESTANTES=2;
 
 int main(){
+    tienda t1(CANTIDAD_DE_ESTANTES);
+    int opcion;
+    do{
+        cout<<"Escoja una opcion:\n(0) Salir\n(1) Ver inventario\n(2) Actualizar estante\n";
+        cin>>opcion;
+        switch(opcion){
+            case 1:
+                t1.imprimirInventario();
+                break;
+            case 2:
+                t1.actualizarEstante();
 
-
+        }
+        cout<<endl;
+    }while(opcion);
 
 
 
