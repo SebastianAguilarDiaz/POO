@@ -19,6 +19,9 @@ using namespace std;
 
 void line(int x=30){while(x--) {cout<<'-';} cout<<endl;}
 
+void limpiarBuffer() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 struct verdura {
 
     string nombre;
@@ -35,7 +38,8 @@ struct verdura {
     void pedirDatos(){
 
         cout<<"Ingrese el nombre ";
-        cin>>this->nombre;
+        limpiarBuffer();
+        getline(cin,nombre);
         cout<<"Ingrese el precio ";
         cin>>this->precio;
         cout<<"Ingrese el tiempo de vida (en dias) ";
@@ -59,7 +63,8 @@ struct abarrote {
     void pedirDatos(){
 
         cout<<"Ingrese el nombre ";
-        cin>>this->nombre;
+        limpiarBuffer();
+        getline(cin,this->nombre);
         cout<<"Ingrese el precio ";
         cin>>this->precio;
         cout<<"Ingrese la fecha de caducidad ";
@@ -104,7 +109,8 @@ struct estante{
     // para ingresar productos al estante
     void actualizarEstante(){
         cout<<"Quien actualiza el estante?\n";
-        cin>>this->persona_que_actualizo;
+        limpiarBuffer();
+        getline(cin,this->persona_que_actualizo);
 
         cout<<"Ingrese la fecha actual\n";
         cin>>this->fecha_de_actualizacion;
@@ -147,6 +153,7 @@ struct estante{
             }
             // si no ingreso ninguno de los dos tipos mencionados no cunta el intento
             else cantidad_de_productos++;
+            cout<<endl;
         }
     }
 };
@@ -176,7 +183,7 @@ struct tienda{
     }
 };
 
-const int CANTIDAD_DE_ESTANTES=2;
+const int CANTIDAD_DE_ESTANTES=4;
 
 int main(){
     tienda t1(CANTIDAD_DE_ESTANTES);
