@@ -9,18 +9,12 @@
 
 using namespace std;
 
-// ***** PASOS *****
-// git pull
-// hacer cambios en el codigo
-// guardarlos
-// git add .
-// git commit -m "detalles de las modificaciones"
-// git push
+
 
 void line(int x=30){while(x--) {cout<<'-';} cout<<endl;}
 
 void limpiarBuffer() {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 struct verdura {
 
@@ -38,7 +32,6 @@ struct verdura {
     void pedirDatos(){
 
         cout<<"Ingrese el nombre ";
-        limpiarBuffer();
         getline(cin,nombre);
         cout<<"Ingrese el precio ";
         cin>>this->precio;
@@ -46,6 +39,7 @@ struct verdura {
         cin>>this->tiempo_de_vida;
         cout<<"Ingrese la fecha de compra ";
         cin>>this->fecha_de_compra;
+        limpiarBuffer();
     }
 };
 struct abarrote {
@@ -63,12 +57,12 @@ struct abarrote {
     void pedirDatos(){
 
         cout<<"Ingrese el nombre ";
-        limpiarBuffer();
         getline(cin,this->nombre);
         cout<<"Ingrese el precio ";
         cin>>this->precio;
         cout<<"Ingrese la fecha de caducidad ";
         cin>>this->fecha_de_caducidad;
+        limpiarBuffer();
 
     }
 };
@@ -109,7 +103,6 @@ struct estante{
     // para ingresar productos al estante
     void actualizarEstante(){
         cout<<"Quien actualiza el estante?\n";
-        limpiarBuffer();
         getline(cin,this->persona_que_actualizo);
 
         cout<<"Ingrese la fecha actual\n";
@@ -119,12 +112,14 @@ struct estante{
         cout<<"Ingrese cuantos productos contendra el estante "<< this->numero_de_estante <<endl;
         int cantidad_de_productos;
         cin>>cantidad_de_productos;
+        limpiarBuffer();
 
         // minimo deben haber 8 productos en el estante
         while(cantidad_de_productos<8){
             cout<<"Minimo deben ser 8 productos\n";
             cout<<"Ingrese cuantos productos contendra el estante "<< this->numero_de_estante <<endl;
             cin>>cantidad_de_productos;
+            limpiarBuffer();
         }
         verdura v1;
         abarrote a1;
@@ -141,6 +136,7 @@ struct estante{
             cout<<"Productos restantes "<<cantidad_de_productos--<<endl;
             cout<<"Verdura(v) o abarrotes(a)\t";
             cin>>tipo;
+            limpiarBuffer();
 
             if (tipo=='a'){
                 a1.pedirDatos();
@@ -173,6 +169,7 @@ struct tienda{
         cout<<"Ingrese que estante desea actualizar\n";
         int n;
         cin>>n;
+        limpiarBuffer();
         this->estantes.at(n-1).actualizarEstante();
     }
     void imprimirInventario(){
@@ -191,6 +188,7 @@ int main(){
     do{
         cout<<"Escoja una opcion:\n(0) Salir\n(1) Ver inventario\n(2) Actualizar estante\n";
         cin>>opcion;
+        limpiarBuffer();
         switch(opcion){
             case 1:
                 t1.imprimirInventario();
