@@ -5,10 +5,9 @@
 #include<chrono>
 #include<string.h>
 #include<set>
-#include <algorithm>
+#include<algorithm>
 
 using namespace std;
-
 
 
 void line(int x=30){while(x--) {cout<<'-';} cout<<endl;}
@@ -28,20 +27,20 @@ struct verdura {
         line();
     }
 
-
     void pedirDatos(){
 
-        cout<<"Ingrese el nombre ";
+        cout<<"Ingrese el nombre: ";
         getline(cin,nombre);
-        cout<<"Ingrese el precio ";
+        cout<<"Ingrese el precio: ";
         cin>>this->precio;
-        cout<<"Ingrese el tiempo de vida (en dias) ";
+        cout<<"Ingrese el tiempo de vida (en dias): ";
         cin>>this->tiempo_de_vida;
-        cout<<"Ingrese la fecha de compra ";
+        cout<<"Ingrese la fecha de compra: ";
         cin>>this->fecha_de_compra;
         limpiarBuffer();
     }
 };
+
 struct abarrote {
 
     string nombre;
@@ -52,18 +51,16 @@ struct abarrote {
         cout<<nombre<<"\t|"<<precio<<"\t|"<<fecha_de_caducidad<<endl;
         line();
 
-
     }
     void pedirDatos(){
 
-        cout<<"Ingrese el nombre ";
+        cout<<"Ingrese el nombre: ";
         getline(cin,this->nombre);
-        cout<<"Ingrese el precio ";
+        cout<<"Ingrese el precio: ";
         cin>>this->precio;
-        cout<<"Ingrese la fecha de caducidad ";
+        cout<<"Ingrese la fecha de caducidad: ";
         cin>>this->fecha_de_caducidad;
         limpiarBuffer();
-
     }
 };
 
@@ -129,12 +126,11 @@ struct estante{
         abarrotes.clear();
 
 
-
         // ingresa los productos
         while(cantidad_de_productos){
             char tipo;
-            cout<<"Productos restantes "<<cantidad_de_productos--<<endl;
-            cout<<"Verdura(v) o abarrotes(a)\t";
+            cout<<"Productos restantes: "<<cantidad_de_productos--<<endl;
+            cout<<"Verdura(v) o abarrote(a)\t";
             cin>>tipo;
             limpiarBuffer();
 
@@ -195,12 +191,9 @@ int main(){
                 break;
             case 2:
                 t1.actualizarEstante();
-
         }
         cout<<endl;
     }while(opcion);
-
-
 
     return 0;
 }
