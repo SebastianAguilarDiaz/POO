@@ -6,7 +6,7 @@
 #include<string.h>
 #include<set>
 #include<algorithm>
-#include <iomanip>
+#include<iomanip>
 
 using namespace std;
 
@@ -42,6 +42,7 @@ struct verdura {
         limpiarBuffer();
     }
 };
+
 struct abarrote {
 
     string nombre;
@@ -201,7 +202,7 @@ int main(){
         }
         cout<<endl;
     }while(opcion);
-    
+
     cout<<"Buen dia.\n";
     return 0;
 }
