@@ -6,15 +6,18 @@
 #include<string.h>
 #include<set>
 #include<algorithm>
+#include<iomanip>
 
 using namespace std;
 
+// version bonita
 
-void line(int x=30){while(x--) {cout<<'-';} cout<<endl;}
+void line(int x=33){while(x--) {cout<<'-';} cout<<endl;}
 
 void limpiarBuffer() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
 struct verdura {
 
     string nombre;
@@ -23,12 +26,11 @@ struct verdura {
     string fecha_de_compra;
 
     void imprimirDatos(){
-        cout<<nombre<<"\t|"<<precio<<"\t|"<<tiempo_de_vida<<"\t|"<<fecha_de_compra<<endl;
+        cout<<left<<setw(10)<<nombre<<"|"<<setw(6)<<precio<<"|"<<setw(6)<<tiempo_de_vida<<"|"<<fecha_de_compra<<endl;
         line();
     }
 
     void pedirDatos(){
-
         cout<<"Ingrese el nombre: ";
         getline(cin,nombre);
         cout<<"Ingrese el precio: ";
@@ -48,12 +50,13 @@ struct abarrote {
     string fecha_de_caducidad;
 
     void imprimirDatos(){
-        cout<<nombre<<"\t|"<<precio<<"\t|"<<fecha_de_caducidad<<endl;
+        cout<<setw(10)<<nombre<<"|"<<setw(10)<<precio<<"|"<<fecha_de_caducidad<<endl;
         line();
 
-    }
-    void pedirDatos(){
 
+    }
+
+    void pedirDatos(){
         cout<<"Ingrese el nombre: ";
         getline(cin,this->nombre);
         cout<<"Ingrese el precio: ";
@@ -74,7 +77,6 @@ struct estante{
 
     // constructor
     estante(int estante){
-
         // guardar el numero de estante
         this->numero_de_estante=estante;
 
@@ -84,37 +86,35 @@ struct estante{
 
     // imprimir lo que contiene el estante
     void imprimirDatos(){
-        cout<<"\nEstante "<<this->numero_de_estante<<endl;
-        cout<<"Fecha de la ultima actualizacion "<<this->fecha_de_actualizacion<<"\nPersona que actualizo "<<this->persona_que_actualizo<<endl<<endl;
-        cout<<"Verduras\n";
-        cout<<"Nombre\t|Precio\t|Tiempo\t|Fecha\n";
+        cout<<"\nESTANTE "<<this->numero_de_estante<<endl;
+        cout<<"Fecha de la ultima actualizacion: "<<this->fecha_de_actualizacion<<"\nPersona que lo actualizo: "<<this->persona_que_actualizo<<endl<<endl;
+        cout<<"* VERDURAS *\n";
+        cout<<setw(10)<<"Nombre"<<"|Precio|Tiempo|Fecha\n";
         line();
         for(verdura &n:this->verduras) n.imprimirDatos();
-        cout<<"\nAbarrotes\n";
-        cout<<"Nombre\t|Precio\t|Caducidad\n";
+        cout<<"\n+ ABARROTES +\n";
+        cout<<setw(10)<<"Nombre"<<"|Precio    |Caducidad\n";
         line();
         for(abarrote &n:this->abarrotes) n.imprimirDatos();
-        
     }
 
     // para ingresar productos al estante
     void actualizarEstante(){
-        cout<<"Quien actualiza el estante?\n";
-        getline(cin,this->persona_que_actualizo);
+        cout<<"Quien actualiza el estante? ";
+        getline(cin>>ws,this->persona_que_actualizo);
 
-        cout<<"Ingrese la fecha actual\n";
+        cout<<"Ingrese la fecha actual: ";
         cin>>this->fecha_de_actualizacion;
 
-
-        cout<<"Ingrese cuantos productos contendra el estante "<< this->numero_de_estante <<endl;
+        cout<<"Cantidad de productos del estante "<< this->numero_de_estante << ": ";
         int cantidad_de_productos;
         cin>>cantidad_de_productos;
         limpiarBuffer();
 
         // minimo deben haber 8 productos en el estante
         while(cantidad_de_productos<8){
-            cout<<"Minimo deben ser 8 productos\n";
-            cout<<"Ingrese cuantos productos contendra el estante "<< this->numero_de_estante <<endl;
+            cout<<"Deben ser al menos 8 productos.\n";
+            cout<<"Ingrese cuantos productos contendra el estante: "<< this->numero_de_estante <<endl;
             cin>>cantidad_de_productos;
             limpiarBuffer();
         }
@@ -126,11 +126,12 @@ struct estante{
         abarrotes.clear();
 
 
+
         // ingresa los productos
         while(cantidad_de_productos){
             char tipo;
-            cout<<"Productos restantes: "<<cantidad_de_productos--<<endl;
-            cout<<"Verdura(v) o abarrote(a)\t";
+            cout<<"\nProductos restantes: "<<cantidad_de_productos--<<endl;
+            cout<<"Verdura(v) o abarrote(a)?\t";
             cin>>tipo;
             limpiarBuffer();
 
@@ -145,7 +146,7 @@ struct estante{
             }
             // si no ingreso ninguno de los dos tipos mencionados no cunta el intento
             else cantidad_de_productos++;
-            cout<<endl;
+            //cout<<endl;
         }
     }
 };
@@ -161,13 +162,15 @@ struct tienda{
             estantes.push_back(n);
         }
     }
+
     void actualizarEstante(){
-        cout<<"Ingrese que estante desea actualizar\n";
+        cout<<"\nIngrese que estante desea actualizar: ";
         int n;
         cin>>n;
         limpiarBuffer();
         this->estantes.at(n-1).actualizarEstante();
     }
+
     void imprimirInventario(){
         for(estante &n:estantes){
             n.imprimirDatos();
@@ -176,9 +179,18 @@ struct tienda{
     }
 };
 
-const int CANTIDAD_DE_ESTANTES=4;
+int CANTIDAD_DE_ESTANTES;
 
 int main(){
+    cout<<"---------- INVENTARIO ----------\nIngrese la cantidad de estantes: ";
+    cin>>CANTIDAD_DE_ESTANTES;
+    
+    while(CANTIDAD_DE_ESTANTES<4){
+        cout<<"Deben ser minimo 4 estantes.\n";
+        cout<<"Ingrese la cantidad de estantes: ";
+        cin>>CANTIDAD_DE_ESTANTES;
+    }
+
     tienda t1(CANTIDAD_DE_ESTANTES);
     int opcion;
     do{
@@ -195,5 +207,6 @@ int main(){
         cout<<endl;
     }while(opcion);
 
+    cout<<"Buen dia.\n";
     return 0;
 }
