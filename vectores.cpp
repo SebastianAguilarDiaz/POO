@@ -35,9 +35,9 @@ int main(){
 
     int n,m;
 
-    cout<<"Introduzca es tamano del primer vector\t";
+    cout<<"Introduzca el tamano del primer vector\t";
     cin>>n;
-    cout<<"Introduzca es tamano del segundo vector\t";
+    cout<<"Introduzca el tamano del segundo vector\t";
     cin>>m;
 
     vector <int> A (n);
@@ -59,7 +59,7 @@ int main(){
     cout<<"\nCantidad de elementos en A que tambien estan en B\t"<<elementsRepeated(A,B)<<endl;
     cout<<"Cantidad de elementos que estan en B pero no en A\t"<<elementNotRepeated(B,A)<<endl;
 
-    cout<<"Elementos en A pero no en B\n";
+    cout<<"\nElementos en A pero no en B\n";
     vector<int> C=elementsJustOnA(A,B);
     for(int &n:C)
         cout<<n<<", ";
